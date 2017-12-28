@@ -17,8 +17,10 @@ role VARCHAR(1) CHECK(role in ('a','u')),
 PRIMARY KEY (ID_user) 
 ); 
 create table basket( 
+idBasket int NOT NULL AUTO_INCREMENT, 
 ID_user int NOT NULL, 
 ID_book int NOT NULL, 
+PRIMARY KEY (idBasket),
 FOREIGN KEY (ID_book) REFERENCES book_catalog(ID_book), 
 FOREIGN KEY (ID_user) REFERENCES users(ID_user) 
 ); 
