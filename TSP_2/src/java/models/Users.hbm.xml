@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17.12.2017 14:21:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="models.Users" table="users" catalog="shop2" optimistic-lock="version">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="ID_user" />
+            <generator class="identity" />
+        </id>
+        <property name="username" type="string">
+            <column name="username" length="16" not-null="true" unique="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="16" not-null="true" />
+        </property>
+        <property name="role" type="string">
+            <column name="role" length="1" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_user" not-null="true" />
+            </key>
+            <one-to-many class="models.Orders" />
+        </set>
+        <set name="baskets" table="basket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_user" not-null="true" />
+            </key>
+            <one-to-many class="models.Basket" />
+        </set>
+    </class>
+</hibernate-mapping>

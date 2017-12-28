@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17.12.2017 14:21:17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="models.BookCatalog" table="book_catalog" catalog="shop2" optimistic-lock="version">
+        <id name="idBook" type="java.lang.Integer">
+            <column name="ID_book" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="author" type="string">
+            <column name="author" length="50" not-null="true" />
+        </property>
+        <property name="genre" type="string">
+            <column name="genre" length="50" not-null="true" />
+        </property>
+        <property name="year" type="java.lang.Integer">
+            <column name="year" not-null="true" />
+        </property>
+        <property name="cost" type="java.lang.Integer">
+            <column name="cost" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="1000" />
+        </property>
+        <set name="orderses" table="orders" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_book" not-null="true" />
+            </key>
+            <one-to-many class="models.Orders" />
+        </set>
+        <set name="baskets" table="basket" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_book" not-null="true" />
+            </key>
+            <one-to-many class="models.Basket" />
+        </set>
+    </class>
+</hibernate-mapping>

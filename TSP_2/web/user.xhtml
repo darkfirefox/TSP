@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Магазин</title>
+        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.jpg" />
+    </h:head>
+    <h:body class="user">
+        <div class="jumbotron container">
+            <h2><i>Добро пожаловать!</i></h2 >      
+            <p>Не останавливайтесь на прочитанном!</p>
+        </div>
+        <div class="container-fluid">
+        <h:form>
+            <div class="col-12">
+                <h3>Каталог</h3>
+                <h:commandButton value="Весь каталог" action="#{userController.allBooks()}" class="btn btn-default"></h:commandButton><span> </span>
+                <h:commandButton value="Сортировать " action="#{userController.searchAndSort()}" class="btn btn-default"></h:commandButton>
+                <h:selectOneMenu value="#{userController.sortBy}">
+                    <f:selectItem itemValue="name ASC" itemLabel="название - по возрастанию" />
+                    <f:selectItem itemValue="name DESC" itemLabel="название - по убыванию" />
+
+                    <f:selectItem itemValue="author ASC" itemLabel="автор - по возрастанию" />
+                    <f:selectItem itemValue="author DESC" itemLabel="автор - по убыванию" />
+
+                    <f:selectItem itemValue="genre ASC" itemLabel="жанр - по возрастанию" />
+                    <f:selectItem itemValue="genre DESC" itemLabel="жанр - по убыванию" />
+
+                    <f:selectItem itemValue="year ASC" itemLabel="год - по возрастанию" />
+                    <f:selectItem itemValue="year DESC" itemLabel="год - по убыванию" />
+
+                    <f:selectItem itemValue="cost ASC" itemLabel="цена - по возрастанию" />
+                    <f:selectItem itemValue="cost DESC" itemLabel="цена - по убыванию" />
+                </h:selectOneMenu>
+                <div class="row">
+                    <div class="col-md-9 "> 
+                        <div class="table-responsive table  tableCatalog">
+                            <h:dataTable value="#{userController.books}" var="bookCatalog" border="2" class=" table-light">
+                                <h:column>
+                                    <f:facet name="header">Название</f:facet>#{bookCatalog.name}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Автор</f:facet>#{bookCatalog.author}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Жанр</f:facet>#{bookCatalog.genre}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Год</f:facet>#{bookCatalog.year}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">Цена</f:facet>#{bookCatalog.cost}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value=" "/>
+                                    </f:facet>
+                                    <h:commandLink action="#{userController.view()}" value="Подробнее"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value=" "/>
+                                    </f:facet>
+                                    <h:commandLink action="#{userController.buy()}" value="Купить" />
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value=" "/>
+                                    </f:facet>
+                                    <h:commandLink action="#{userController.addToBasket()}" value="В корзину"/>
+                                </h:column>
+                            </h:dataTable>   
+                        </div>
+                    </div>
+                    <div class = "col-md-3">
+                        <div class="input-group">
+                            <span class="input-group-addon search" >Название: </span><h:inputText id="name" class="form-control" value="#{userController.search.name}"><f:validateLength minimum="0" maximum="50" /></h:inputText><br/>
+                        </div><h:message for="name" style="color:red"/>
+                        <div class="input-group">
+                            <span class="input-group-addon search">Автор: </span><h:inputText id="author" class="form-control" value="#{userController.search.author}"><f:validateLength minimum="0" maximum="50" /></h:inputText><br/>
+                        </div><h:message for="author" style="color:red"/>
+                        <div class="input-group">
+                            <span class="input-group-addon search">Жанр: </span><h:inputText id="genre" class="form-control" value="#{userController.search.genre}"><f:validateLength minimum="0" maximum="50" /></h:inputText><br/> 
+                        </div><h:message for="genre" style="color:red"/>
+                        <div class="input-group">
+                            <span class="input-group-addon search">Год: </span><h:inputText id="year" class="form-control" value="#{userController.search.year}"><f:validateLongRange minimum="1900" maximum="2017" /></h:inputText><br/> 
+                        </div><h:message for="year" style="color:red"/>
+                        <div class="input-group">
+                            <span class="input-group-addon search">Цена: </span><h:inputText id="cost" class="form-control" value="#{userController.search.cost}"><f:validateLongRange minimum="0" /></h:inputText><br/>
+                        </div><h:message for="cost" style="color:red"/>
+                        <br/><h:commandButton value="Поиск" action="#{userController.searchAndSort()}" class="btn btn-default"></h:commandButton>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class = "col-md-3">
+                <h3>Корзина</h3>
+                <h:commandButton value="Купить все в корзине" action="#{userController.buyFromBasket()}" class="btn btn-default"></h:commandButton><br/>
+                <div class="table-responsive table tableBasket">
+                    <h:dataTable value="#{userController.basketUser}" var="basket" border="2" class="table-fixed" rendered="#{userController.basketUser.rowCount>0}">
+                        <h:column>
+                            <f:facet name="header">Название</f:facet>#{basket.bookCatalog.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Цена</f:facet>#{basket.bookCatalog.cost}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=" "/>
+                            </f:facet>
+                            <h:commandLink action="#{userController.removeFromBasket()}" value="Удалить"/>
+                        </h:column>
+                    </h:dataTable>
+
+                </div>  
+            </div>
+
+            <div class="navbar navbar-default navbar-fixed-bottom" >
+                <span class="rightBtn"></span><h:commandButton value="Выход" action="#{userController.logout()}" class="navbar-btn btn-danger btn"></h:commandButton>
+            </div>
+        </h:form>
+        </div>
+    </h:body>
+</html>
+

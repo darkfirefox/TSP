@@ -1,0 +1,92 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 20.12.2017, 12:26:56
+    Author     : Павел
+*/
+
+.search{
+    width: 100px;
+}
+.centre{
+    display: block;
+    text-align: center;
+}
+.rightBtn{
+    display: block;
+    text-align: right;
+}
+.tableCatalog{
+    height: 400px; 
+    overflow: auto;
+}
+.tableBasket{
+    height: 200px; 
+    overflow: auto;
+}
+.tableOrders{
+    height: 900px;
+    overflow: auto;
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.inputFrom{
+  outline: 0;
+  background: #cce6ff;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.loginButton{
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.index{
+    background-image: url(indexImage.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.user{
+    background-image: url(userImage.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.admin{
+    background-image: url(adminImage.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: right;
+}
+.jumbotron{
+    height: 140px;
+}
+

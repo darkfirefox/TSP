@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Описание</title>
+        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="bootstrap-4.0.0-beta.2-dist/css/bootstrap.min.css"/>
+        <link rel="shortcut icon" type="image/x-icon" href="favicon.jpg" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="container">
+                <h:panelGrid columns="2" border="2">
+                    <h:outputText value="Название:"/>
+                    <h:outputText value="#{userController.current.name}"/>
+                    <h:outputText value="Автор:"/>
+                    <h:outputText value="#{userController.current.author}"/>
+                    <h:outputText value="Жанр:"/>
+                    <h:outputText value="#{userController.current.genre}"/>
+
+                    <h:outputText value="Год:"/>
+                    <h:outputText value="#{userController.current.year}"/>
+
+
+                    <h:outputText value="Цена:"/>
+                    <h:outputText value="#{userController.current.cost}"/>
+
+                    <h:outputText value="Описание:"/>
+                    <h:outputText value="#{userController.current.description}" />
+
+                </h:panelGrid>
+                <span class="centre"><h:commandLink action="#{userController.backView()}" value="Вернуться"/></span>
+            </div>
+
+            <div class="navbar navbar-default navbar-fixed-bottom" >
+                <span class="rightBtn"></span><h:commandButton value="Выход" action="#{userController.logout()}" class="navbar-btn btn-danger btn"></h:commandButton>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
