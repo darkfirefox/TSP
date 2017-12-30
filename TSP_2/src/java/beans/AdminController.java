@@ -80,10 +80,22 @@ public class AdminController implements java.io.Serializable{
         return null;
     }
     public String ordersInPeriod(){
+        if(this.to.compareTo(this.from)<0)
+        { 
+            Date temp=this.to;
+            this.to=this.from;
+            this.from=temp;
+        }
         this.orders=new ListDataModel(this.helper.getOrdersInPeriod(new java.sql.Date(from.getTime()), new java.sql.Date(to.getTime())));
         return null;
     }
     public String profitPeriod(){
+        if(this.to.compareTo(this.from)<0)
+        { 
+            Date temp=this.to;
+            this.to=this.from;
+            this.from=temp;
+        }
         this.profit=this.helper.getProfit(new java.sql.Date(from.getTime()), new java.sql.Date(to.getTime()));
         return null;
     }
